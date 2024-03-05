@@ -14,12 +14,9 @@ const signinMiddleware = async (req, res, next) => {
         const validOrNot = objects.parse(userData);
         const user = await User.findOne({username: req.body.username});
         if (user) {
-            const check = await bcrypt.compare(userData.password, user.password);
-    
-            if (check) {
-                next();
-            } else {
-                res.status(401).send({ message: 'Invalid password' });
+            const check =  await bcrypt.compare(userData.password, user.password);
+            if(check) {
+                res.status(200).send({message: user._id});
             }
         } else {
             res.status(401).send({ message: 'User not found' });
