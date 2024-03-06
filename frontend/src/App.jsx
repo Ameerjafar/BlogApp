@@ -14,7 +14,7 @@ function App() {
           <Route path = '/' element = {<Navigate to = '/signin' />} />
           <Route path = '/signup' element = {<Signup></Signup>}></Route>
           <Route path = '/signin' element = {<Signin setUserId = { setUserId } setRedirect = { setRedirect }></Signin>}></Route>
-          {redirect && <Route path = '/addblog' element = {<Blog userId = { userId }></Blog>}></Route>}
+          <Route path = '/addblog' element = {<Blog userId = { userId }></Blog>}></Route>
           {redirect && <Route path = '/blogs' element = {<BlogCard></BlogCard>}></Route>}
         </Routes>
       </BrowserRouter>
