@@ -4,8 +4,9 @@ const app = express();
 
 const  { signupMiddleware } = require('../middleware/signup');
 const { signinMiddleware } = require('../middleware/signin');
-const { gettingAllBlogs } = require('../middleware/blog');
+const { gettingUsersBlogs } = require('../middleware/blog');
 const { addBlog } = require('../middleware/blog');
+const { gettingAllBlogs } = require('../middleware/blog'); 
 
 router.post('/signup', signupMiddleware ,(req, res) => {
     res.status(200).send({message: 'signup successfully'});
@@ -16,7 +17,8 @@ router.post('/signin', signinMiddleware, (req, res) => {
 router.post('/addblog', addBlog ,(req, res) => {
     res.status(200).send({message: 'This is from addblog section'});
 })
-router.post('/blog', gettingAllBlogs ,(req, res) => {
-    res.status(200).send({message: 'we are in blog page'});
+router.post('/blog', gettingUsersBlogs ,(req, res) => {
+})
+router.get('/allblogs',gettingAllBlogs ,(res, req) => {
 })
 module.exports = router; 

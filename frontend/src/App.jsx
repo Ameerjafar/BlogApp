@@ -4,6 +4,7 @@ import { Blog } from "./component/Blog"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { BlogCard } from "./component/BlogCard"
 import { useState } from "react"
+import { ShowBlog } from "./component/ShowBlog"
 function App() {
   const [userId, setUserId] = useState('');
   const [redirect, setRedirect] = useState(false);
@@ -16,6 +17,7 @@ function App() {
           <Route path = '/signin' element = {<Signin setUserId = { setUserId } setRedirect = { setRedirect }></Signin>}></Route>
           {redirect && <Route path = '/addblog' element = {<Blog userId = { userId }></Blog>}></Route>}
           <Route path = '/blogs' element = {<BlogCard></BlogCard>}></Route>
+          <Route path = '/showblog' element = {<ShowBlog></ShowBlog>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

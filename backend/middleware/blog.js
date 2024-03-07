@@ -1,11 +1,15 @@
 const { Blog } = require('../config/db');
 
-const gettingAllBlogs = async (req, res, next) => {
+const gettingUsersBlogs = async (req, res, next) => {
     const userId = req.body.userId;
     const userBlogs = await Blog.findOne({
         userId: userId
     });
     res.status(200).send({message: userBlogs});
+}
+const gettingAllBlogs = async (req, res, next) => {
+    const response = await Blog.find({});
+    res.status(200).send({message: response});
 }
 const addBlog = async (req, res, next) => {
     const userId = req.body.userId;
@@ -19,6 +23,7 @@ const addBlog = async (req, res, next) => {
     res.status(200).send({message: "your blog is added successfully into the database"});
 }
 module.exports = {
+    gettingUsersBlogs,
     gettingAllBlogs,
     addBlog
 }
