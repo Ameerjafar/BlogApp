@@ -8,6 +8,8 @@ import { ShowBlog } from "./component/ShowBlog"
 function App() {
   const [userId, setUserId] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   return (
     <div>
       <BrowserRouter>
@@ -16,8 +18,8 @@ function App() {
           <Route path = '/signup' element = {<Signup></Signup>}></Route>
           <Route path = '/signin' element = {<Signin setUserId = { setUserId } setRedirect = { setRedirect }></Signin>}></Route>
           {redirect && <Route path = '/addblog' element = {<Blog userId = { userId }></Blog>}></Route>}
-          <Route path = '/blogs' element = {<BlogCard></BlogCard>}></Route>
-          <Route path = '/showblog' element = {<ShowBlog></ShowBlog>}></Route>
+          <Route path = '/blogs' element = {<BlogCard setTitle = { setTitle } setContent = { setContent } userId = { userId }></BlogCard>}></Route>
+          <Route path = '/showblog' element = {<ShowBlog title = { title } content = { content }></ShowBlog>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
