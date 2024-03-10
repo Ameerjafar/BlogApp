@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-export function Signin( { setUserId, setRedirect }) {
+export function Signin( { setUserId, setRedirect}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -11,9 +11,7 @@ export function Signin( { setUserId, setRedirect }) {
             password: password
             });
             setUserId(res.data.message);
-            console.log(res.data.message);
             setRedirect(true);
-            console.log(res.data.message);
             navigate('/blogs');
         }
     return (

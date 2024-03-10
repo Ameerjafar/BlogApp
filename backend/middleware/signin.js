@@ -16,7 +16,9 @@ const signinMiddleware = async (req, res, next) => {
         if (user) {
             const check =  await bcrypt.compare(userData.password, user.password);
             if(check) {
-                res.status(200).send({message: user._id});
+                res.status(200).send({
+                    message: user._id
+                });
             }
         } else {
             res.status(401).send({ message: 'User not found' });

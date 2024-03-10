@@ -1,8 +1,12 @@
 import { useState } from "react";
 import axios from 'axios';
+import { SuccessCard } from "./SuccessCard";
+import { useNavigate } from "react-router-dom";
 export function Blog( { userId } ) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [posted, setPosted] = useState(false);
+    const navigate = useNavigate();
     const titleHandler = (event) => {
         setTitle(event.target.value);
     }
@@ -14,14 +18,17 @@ export function Blog( { userId } ) {
             userId: userId,
             title: title,
             content: content
-        })  
-        console.log("your data is put successfully into the database");
+        })
+        setTimeout(() => {
+            navigate('/blogs');
+        }, 2000)
+        setPosted(true);
     }
     return (
         <div>
             <div className="flex p-4 pt-0">
                 <div className = 'w-9/12 pl-40 pt-3'>
-                    Draft in ameer jafar
+                    Draft in {}
                 </div>
                 <div className = 'pr-10'>
                     <div className = 'text-center'>
@@ -38,6 +45,9 @@ export function Blog( { userId } ) {
                 </div>
                 <div className = 'text-1xl'>
                     <textarea onChange = {contentHandler} className = 'w-8/12 h-52' type = 'text' placeholder="Tell your story..."></textarea>
+                </div>
+                <div>
+                    {posted && <SuccessCard></SuccessCard>}
                 </div>
             </div>
         </div>

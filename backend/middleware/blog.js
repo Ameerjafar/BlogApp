@@ -2,7 +2,7 @@ const { Blog } = require('../config/db');
 
 const gettingUsersBlogs = async (req, res, next) => {
     const userId = req.body.userId;
-    const userBlogs = await Blog.findOne({
+    const userBlogs = await Blog.find({
         userId: userId
     });
     res.status(200).send({message: userBlogs});

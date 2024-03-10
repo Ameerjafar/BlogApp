@@ -6,8 +6,6 @@ export function BlogCard({setTitle, setContent, userId}) {
     const [date, setDate] = useState(new Date());
     const [data, setData] = useState([]);
     const navigate = useNavigate();
-    const [firstName, setfirstName] = useState('');
-    const [lastName, setlastName] = useState('');
     const titleHandler = (title, content) => {
         setTitle(title);
         setContent(content)
@@ -26,15 +24,15 @@ export function BlogCard({setTitle, setContent, userId}) {
         fetchdata();
     }, [])
     return (
-        <div className = 'pt-2'>
+        <div className = 'bg-gray-100'>
             <AppBar userId = { userId }></AppBar>
             {data.map((post) => (
                 <div key={post._id}>
                 <div className = 'flex justify-center pl-2 pt-3'>
-                    <div className = 'w-1/3 border-b'>
+                    <div className = 'w-1/3 border-b bg-white p-2 rounded-lg'>
                         <div className = 'flex'>
                             <div className = 'pt-2'>
-                                <div className = 'flex items-center justify-center w-6 h-6 bg-gray-400 rounded-full text-sm'>AJ</div>
+                                <div className = 'flex items-center justify-center w-6 h-6 rounded-full text-sm'>AJ</div>
                             </div>
                             <div className = 'p-2 font-thin'>Ameer Jafar .</div>
                             <div className = 'pt-3 font-thin text-sm'>{date.toLocaleDateString()}</div>
@@ -50,7 +48,7 @@ export function BlogCard({setTitle, setContent, userId}) {
                             }}>{post.content.slice(0, 100) + '...'}</div>
                         </div>
                         <div className = 'text-xs font-thin p-1 pl-0'>
-                            2 min read . 
+                            2 min read .
                         </div>
                         </div>
                     </div>
