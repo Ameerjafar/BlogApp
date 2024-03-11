@@ -4,16 +4,20 @@ import { useNavigate } from 'react-router-dom';
 export function Signin( { setUserId, setRedirect}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const submitHandler = async () => {
+        try {
             const res = await axios.post('http://localhost:3000/users/signin', {
-            username: username,
-            password: password
+                username: username,
+                password: password
             });
             setUserId(res.data.message);
-
             setRedirect(true);
             navigate('/blogs');
+        }catch(error) {
+            setError("User credentials are incorrect");
+        } 
         }
     return (
         <div className = 'h-screen flex items-center justify-center text-color bg-gray-400'>
@@ -33,6 +37,7 @@ export function Signin( { setUserId, setRedirect}) {
                         navigate('/signup');
                     }} className = 'font-bold'>account</button>
                 </div>
+                {error && <div className = 'text-center text-red-400'>{error}</div>}
             </div>
         </div>
     )

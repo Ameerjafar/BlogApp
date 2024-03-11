@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { AppBar } from "./AppBar";
+import { EmptyBlog } from "./EmptyBlog";
 export function OwnBlog( { userId }) {
     const[data, setData] = useState([]);
     const[date, setDate] = useState(new Date());
@@ -10,7 +11,7 @@ export function OwnBlog( { userId }) {
                 userId: userId
             });
             setData(response.data.message);
-            console.log(userId);
+            console.log(data);
         }
         fetchdata();
     }, [])
@@ -18,7 +19,7 @@ export function OwnBlog( { userId }) {
         <div className = 'bg-gray-100'>
             <AppBar userId = { userId }></AppBar>
             <div className = 'pt-2'>
-                {data.map((post) => (
+                {data.length !== 0  && data.map((post) => (
                     <div key={post._id}>
                     <div className = 'flex justify-center pl-2 pt-3 bg-gray-100'>
                         <div className = 'w-1/3 border-b bg-white p-2 rounded-lg'>
@@ -46,6 +47,9 @@ export function OwnBlog( { userId }) {
                         </div>
                     </div>
                 ))}
+                <div>
+                    {data.length == 0 && <EmptyBlog></EmptyBlog>}
+                </div>
             </div>
         </div>
     )

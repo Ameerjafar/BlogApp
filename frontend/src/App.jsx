@@ -6,6 +6,7 @@ import { BlogCard } from "./component/BlogCard"
 import { useState } from "react"
 import { ShowBlog } from "./component/ShowBlog"
 import { OwnBlog } from "./component/OwnBlog"
+import { EmptyBlog } from "./component/EmptyBlog"
 function App() {
   const [userId, setUserId] = useState('');
   const [redirect, setRedirect] = useState(false);
@@ -22,6 +23,7 @@ function App() {
           <Route path = '/blogs' element = {<BlogCard setTitle = { setTitle } setContent = { setContent } userId = { userId }></BlogCard>}></Route>
           <Route path = '/showblog' element = {<ShowBlog title = { title } content = { content } userId = { userId }></ShowBlog>}></Route>
           <Route path = 'ownblog' element = {<OwnBlog userId = { userId }></OwnBlog>}></Route>
+          <Route path = '/emptyblog' element = {<EmptyBlog></EmptyBlog>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
