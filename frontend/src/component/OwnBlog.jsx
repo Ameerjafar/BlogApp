@@ -16,7 +16,7 @@ export function OwnBlog( { userId }) {
         fetchdata();
     }, [])
     return (
-        <div className = 'bg-gray-100'>
+        <div className = 'bg-gray-100 h-screen'>
             <AppBar userId = { userId }></AppBar>
             <div className = 'pt-2'>
                 {data.length !== 0  && data.map((post) => (
