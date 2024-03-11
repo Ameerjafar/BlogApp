@@ -20,10 +20,9 @@ function App() {
           <Route path = '/signup' element = {<Signup></Signup>}></Route>
           <Route path = '/signin' element = {<Signin setUserId = { setUserId } setRedirect = { setRedirect }></Signin>}></Route>
           {redirect && <Route path = '/addblog' element = {<Blog userId = { userId }></Blog>}></Route>}
-          <Route path = '/blogs' element = {<BlogCard setTitle = { setTitle } setContent = { setContent } userId = { userId }></BlogCard>}></Route>
-          <Route path = '/showblog' element = {<ShowBlog title = { title } content = { content } userId = { userId }></ShowBlog>}></Route>
-          <Route path = 'ownblog' element = {<OwnBlog userId = { userId }></OwnBlog>}></Route>
-          <Route path = '/emptyblog' element = {<EmptyBlog></EmptyBlog>}></Route>
+          {redirect && <Route path = '/blogs' element = {<BlogCard setTitle = { setTitle } setContent = { setContent } userId = { userId }></BlogCard>}></Route>}
+          {redirect && <Route path = '/showblog' element = {<ShowBlog title = { title } content = { content } userId = { userId }></ShowBlog>}></Route>}
+          {redirect && <Route path = 'ownblog' element = {<OwnBlog userId = { userId }></OwnBlog>}></Route>}
         </Routes>
       </BrowserRouter>
     </div>
