@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { AppBar } from "./AppBar";
 export function BlogCard({setTitle, setContent, userId}) {
-    const [date, setDate] = useState(new Date());
     const [data, setData] = useState([]);
     const navigate = useNavigate();
+    const [date, setDate] = useState(new Date());
     const titleHandler = (title, content) => {
         setTitle(title);
         setContent(content)
@@ -32,7 +32,7 @@ export function BlogCard({setTitle, setContent, userId}) {
                     <div className = 'w-1/3 border-b bg-white p-2 rounded-lg'>
                         <div className = 'flex'>
                             <div className = 'pt-2'>
-                                <div className = 'flex items-center justify-center w-6 h-6 rounded-full text-sm'>AJ</div>
+                                <div className = 'bg-gray-200 flex items-center justify-center w-6 h-6 rounded-full text-sm'>AJ</div>
                             </div>
                             <div className = 'p-2 font-thin'>Ameer Jafar .</div>
                             <div className = 'pt-3 font-thin text-sm'>{date.toLocaleDateString()}</div>

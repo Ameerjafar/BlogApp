@@ -5,7 +5,11 @@ mongoose.connect('mongodb://localhost:27017');
 const blogSchema = new mongoose.Schema({
     userId: String,
     title: String,
-    content: String
+    content: String, 
+    date: {
+        type: Date, 
+        default: Date.now
+    }
 })
 
 const userSchema = new mongoose.Schema({

@@ -1,9 +1,10 @@
-
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 export function AppBar({ userId }) {
     const navigate = useNavigate();
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const writeHandler = () => {
         navigate('/addblog');
     }
@@ -14,13 +15,20 @@ export function AppBar({ userId }) {
         navigate('/ownblog');
     }
     useEffect(() => {
-        const fetchuserInformation = async () => {
-            const response = await axios.post('http://localhost:3000/users/user', {
-                userId
+        const fetchInformation = async () => {
+            const response = await axios.post("http://localhost:3000/users/user", {
+                userId: userId
             })
-            console.log(response);
-        fetchuserInformation();
-    }}, [])
+            setFirstName(response.data.firstName);
+            setLastName(response.data.lastName);
+        }
+        fetchInformation();
+    }, [])
+    useEffect(() => {
+        console.log(firstName);
+        console.log(lastName);
+        console.log(userId);
+    }, [firstName, lastName, userId]);
     return <div className = 'bg-white'>
         <div className = 'flex p-5 pl-10 border-b gap-7'>
                 <div className = 'w-4/5'>
@@ -28,7 +36,7 @@ export function AppBar({ userId }) {
                 </div>
                 <button onClick = {writeHandler} className="fa fa-pencil text-green-400" aria-hidden="true"></button>
                 <button className="fa fa-bell" aria-hidden="true"></button>
-                <button onClick = {profileHandler} className = 'w-6 h-6 rounded-full bg-gray-300 text-gray-600'>AJ</button>
+                <button onClick = {profileHandler} className = 'w-6 h-6 rounded-full bg-gray-300 text-gray-600'>{(firstName && lastName) ? `${firstName[0]}${lastName[0]}`.toUpperCase() : ''}</button>
         </div>
     </div>
 }
